@@ -52,6 +52,30 @@ ptr->link=temp;
 printf("data after adding at end\n");
 }
 
+void add_pos(struct node *head,int d,int pos){
+struct node *temp=malloc(sizeof(struct node));
+temp->data=d;
+temp->link=NULL;
+struct node *ptr=head;
+pos--;
+while(pos!=1){
+ptr=ptr->link;
+pos--;
+}
+temp->link=ptr->link;
+ptr->link=temp;
+printf("data after adding at pos\n");
+}
+
+struct node *del_beg(struct node *head){
+struct node *temp=NULL;
+temp=head;
+head=head->link;
+free(temp);
+printf("data after deleting at beg\n");
+return head;
+}
+
 
 
 int main(){
@@ -78,6 +102,11 @@ add_beg(&head,65);
 print_data(head);
 add_end(head,75);
 print_data(head);
+add_pos(head,53,3);
+print_data(head);
+head=del_beg(head);
+print_data(head);
 return 0;
 }
+
 
